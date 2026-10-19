@@ -1,0 +1,31 @@
+# Local secrets and environment files — never commit tokens or endpoints.
+.env
+!.env.example
+!.env.sample
+.env.*
+*.pem
+*.key
+secrets.json
+
+# Python caches and tooling artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Generated fictional dataset (regenerate with: python northstar/gen_data.py)
+northstar/data/
+
+# SAM / build artifacts
+.aws-sam/
+samconfig.toml
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+

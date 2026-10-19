@@ -1,0 +1,16 @@
+{
+  "pack": "blind_pack_v1",
+  "dataset": "Northstar Outdoor Co. (fictional, northstar/gen_data.py)",
+  "questions": [
+    {"id": "q1", "question": "How much revenue did we make in the second quarter of 2026?",
+     "correction": "I mean gross revenue for the quarter, all regions and channels together."},
+    {"id": "q2", "question": "Which region brought in the most revenue in the second quarter of 2026?",
+     "correction": "Rank the four regions by gross revenue for that single quarter, not the year to date."},
+    {"id": "q3", "question": "Which product category earned the most over the last four quarters?",
+     "correction": "The last four quarters are Q3 2025 through Q2 2026; rank categories by gross revenue."},
+    {"id": "q4", "question": "Which product has the highest return rate this year?",
+     "correction": "Return rate means units returned divided by units sold, across Q1 and Q2 of 2026."},
+    {"id": "q5", "question": "Which sales channel drove the most revenue in the first quarter of 2026?",
+     "correction": "Compare Retail, Online and Wholesale by gross revenue for Q1 2026 only."}
+  ]
+}

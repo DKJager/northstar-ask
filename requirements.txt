@@ -1,0 +1,4 @@
+# mcp floor raised so the installed SDK negotiates MCP spec version 2025-11-25
+# (the version declared in README.md); older 1.x releases negotiate an earlier spec.
+mcp>=1.23,<2
+uvicorn>=0.30,<1

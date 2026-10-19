@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northstar Ask — Simulated Alexa+ Experience</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="device-frame" aria-label="Simulated Echo Show display">
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <h1>Northstar Ask</h1>
+      </div>
+      <div class="mode-pill" id="mode-pill">Simulated Alexa+ experience</div>
+    </header>
+
+    <section class="status-row">
+      <span class="status-label">Dataset:</span>
+      <span>Northstar Outdoor Co. (fictional demo data)</span>
+    </section>
+
+    <section id="conversation" class="conversation" aria-live="polite">
+      <div class="bubble assistant">
+        <p>Hi! Ask me anything about the fictional Northstar Outdoor Co. dataset — for example “How much revenue did Northstar make last quarter?”</p>
+      </div>
+    </section>
+
+    <section id="card-area" class="card-area" aria-live="polite"></section>
+
+    <footer class="controls">
+      <form id="text-form" class="text-form">
+        <input id="text-input" type="text" autocomplete="off"
+               placeholder="Type a question…"
+               aria-label="Type a question">
+        <button type="submit" class="btn send-btn">Ask</button>
+      </form>
+      <div class="action-row">
+        <button id="mic-btn" class="btn mic-btn" disabled
+                aria-label="Push to talk">Push to talk</button>
+        <button id="brief-btn" class="btn alt-btn">Weekly brief</button>
+        <button id="explain-btn" class="btn alt-btn" aria-label="Explain the last answer">Explain that</button>
+        <button id="correct-btn" class="btn alt-btn" aria-label="Correct the last answer">Correct me</button>
+      </div>
+      <p class="hint" id="speech-support-hint">
+        Initializing...
+      </p>
+      <div id="endpoint-status" class="endpoint-status" aria-live="polite"></div>
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

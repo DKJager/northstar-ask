@@ -1,0 +1,112 @@
+# SAM template — Northstar Ask MCP server as AWS Lambda + Function URL.
+# Deploys as-is (HOST FIRST milestone). The answering service stays private
+# at NORTHSTAR_ENDPOINT; this stack only hosts the end-product surface.
+#
+# Build notes:
+# - Architectures is x86_64. Build with `sam build --use-container` so the
+#   Python wheels are resolved for the Lambda runtime, not for the host
+#   machine (a macOS or Windows host otherwise packages host-native wheels).
+# - CodeUri is the repository root, so everything under it is packaged.
+#   Create the virtualenv outside the repository (for example
+#   `python3.12 -m venv ../northstar-venv`) or remove `.venv/` before
+#   building; otherwise it ships inside the zip. `tests/` and `docs/` are
+#   packaged too; they are small and harmless, but can be removed from the
+#   build copy if package size matters.
+#
+# Access notes (demo-only):
+# - The Function URL uses AuthType NONE with open CORS so judges can reach
+#   the endpoint without credentials for the whole judging period. For
+#   anything beyond a demo switch AuthType to AWS_IAM, or put the URL behind
+#   your own gateway, and narrow AllowOrigins to your client's origin.
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Northstar Ask — self-hosted MCP server (spec 2025-11-25, Streamable HTTP).
+  Thin wrapper over the private 3Dogs Nexus answering service. Demo data is
+  fictional (Northstar Outdoor Co.); no real customer data is stored.
+
+Parameters:
+  NorthstarEndpoint:
+    Type: String
+    NoEcho: true
+    Default: ""
+    AllowedPattern: ^https?://.+$|^$
+    Description: >
+      Base URL of the private answering service. Required when SampleMode is false.
+  NorthstarToken:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: >
+      Bearer token for the private answering service. Never logged.
+  SampleMode:
+    Type: String
+    Default: "true"
+    AllowedValues: ["true", "false"]
+    Description: >
+      When true, the function serves recorded end-product responses so
+      judges can evaluate without access to the private service.
+
+# Parameter validation at deploy time: live mode needs an endpoint.
+# (Replaces the earlier Conditions block, whose conditions were never used.)
+Rules:
+  EndpointRequiredWhenLive:
+    RuleCondition: !Equals [!Ref SampleMode, "false"]
+    Assertions:
+      - Assert: !Not [!Equals [!Ref NorthstarEndpoint, ""]]
+        AssertDescription: >-
+          NorthstarEndpoint is required when SampleMode is false.
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 30
+    MemorySize: 512
+    # Build with `sam build --use-container` so wheels match this target.
+    Architectures: [x86_64]
+
+Resources:
+  NorthstarAskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-northstar-ask-mcp"
+      Handler: mcp_server.server.lambda_handler
+      # Repository root is the package; keep the virtualenv outside it.
+      CodeUri: ../
+      Description: >
+        Northstar Ask MCP server over Streamable HTTP. Routes to the same
+        tools as the local uvicorn run.
+      Environment:
+        Variables:
+          NORTHSTAR_ENDPOINT: !Ref NorthstarEndpoint
+          NORTHSTAR_TOKEN: !Ref NorthstarToken
+          SAMPLE_MODE: !Ref SampleMode
+          MCP_STATELESS: "true"
+          MCP_ALLOW_ANY_HOST: "true"
+      FunctionUrlConfig:
+        # Demo-only: no auth and open CORS so judges can reach it. Use
+        # AWS_IAM (or your own gateway) for anything beyond a demo.
+        AuthType: NONE
+        Cors:
+          AllowOrigins: ["*"]
+          AllowMethods: ["POST", "GET", "DELETE"]
+          AllowHeaders: [
+            "content-type",
+            "authorization",
+            "mcp-session-id",
+            "mcp-protocol-version",
+            "last-event-id",
+            "accept"
+          ]
+          # Browser clients must be able to read the session id header
+          # returned at initialize.
+          ExposeHeaders: ["mcp-session-id"]
+
+Outputs:
+  McpEndpointUrl:
+    Description: >
+      Public Function URL. Append /mcp for the Streamable HTTP MCP endpoint.
+    Value: !Sub "${NorthstarAskFunctionUrl.FunctionUrl}mcp"
+  FunctionName:
+    Description: Deployed Lambda function name.
+    Value: !Ref NorthstarAskFunction

@@ -1,0 +1,347 @@
+{
+  "mode": "local_fake",
+  "note": "Canned text from a local test double; proves the path only, not answer quality.",
+  "ground_truth": {
+    "q1": {
+      "answer": "Q2 2026 revenue",
+      "value_usd": 769742.37
+    },
+    "q2": {
+      "answer": "Pacific",
+      "value_usd": 197121.34
+    },
+    "q3": {
+      "answer": "Tents",
+      "value_usd": 1696301.62
+    },
+    "q4": {
+      "answer": "Vista 30L Pack",
+      "return_rate": 0.0271
+    },
+    "q5": {
+      "answer": "Retail",
+      "value_usd": 354844.95
+    }
+  },
+  "blind_pairs": [
+    {
+      "id": "q1",
+      "question": "How much revenue did we make in the second quarter of 2026?",
+      "answer_A": "Stub answer to: How much revenue did we make in the second quarter of 2026?",
+      "answer_B": "Improved from your feedback: Stub answer to: How much revenue did we make in the second quarter of 2026?"
+    },
+    {
+      "id": "q2",
+      "question": "Which region brought in the most revenue in the second quarter of 2026?",
+      "answer_A": "Improved from your feedback: Stub answer to: Which region brought in the most revenue in the second quarter of 2026?",
+      "answer_B": "Stub answer to: Which region brought in the most revenue in the second quarter of 2026?"
+    },
+    {
+      "id": "q3",
+      "question": "Which product category earned the most over the last four quarters?",
+      "answer_A": "Improved from your feedback: Stub answer to: Which product category earned the most over the last four quarters?",
+      "answer_B": "Stub answer to: Which product category earned the most over the last four quarters?"
+    },
+    {
+      "id": "q4",
+      "question": "Which product has the highest return rate this year?",
+      "answer_A": "Stub answer to: Which product has the highest return rate this year?",
+      "answer_B": "Improved from your feedback: Stub answer to: Which product has the highest return rate this year?"
+    },
+    {
+      "id": "q5",
+      "question": "Which sales channel drove the most revenue in the first quarter of 2026?",
+      "answer_A": "Stub answer to: Which sales channel drove the most revenue in the first quarter of 2026?",
+      "answer_B": "Improved from your feedback: Stub answer to: Which sales channel drove the most revenue in the first quarter of 2026?"
+    }
+  ],
+  "key": {
+    "q1": {
+      "A": "before",
+      "B": "after"
+    },
+    "q2": {
+      "A": "after",
+      "B": "before"
+    },
+    "q3": {
+      "A": "after",
+      "B": "before"
+    },
+    "q4": {
+      "A": "before",
+      "B": "after"
+    },
+    "q5": {
+      "A": "before",
+      "B": "after"
+    }
+  },
+  "runs": [
+    {
+      "id": "q1",
+      "question": "How much revenue did we make in the second quarter of 2026?",
+      "correction": "I mean gross revenue for the quarter, all regions and channels together.",
+      "before": {
+        "spoken": "Stub answer to: How much revenue did we make in the second quarter of 2026?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-1"
+      },
+      "feedback": {
+        "spoken": "Stub: correction noted.",
+        "status": "recorded"
+      },
+      "after": {
+        "spoken": "Improved from your feedback: Stub answer to: How much revenue did we make in the second quarter of 2026?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-2"
+      }
+    },
+    {
+      "id": "q2",
+      "question": "Which region brought in the most revenue in the second quarter of 2026?",
+      "correction": "Rank the four regions by gross revenue for that single quarter, not the year to date.",
+      "before": {
+        "spoken": "Stub answer to: Which region brought in the most revenue in the second quarter of 2026?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-3"
+      },
+      "feedback": {
+        "spoken": "Stub: correction noted.",
+        "status": "recorded"
+      },
+      "after": {
+        "spoken": "Improved from your feedback: Stub answer to: Which region brought in the most revenue in the second quarter of 2026?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-4"
+      }
+    },
+    {
+      "id": "q3",
+      "question": "Which product category earned the most over the last four quarters?",
+      "correction": "The last four quarters are Q3 2025 through Q2 2026; rank categories by gross revenue.",
+      "before": {
+        "spoken": "Stub answer to: Which product category earned the most over the last four quarters?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-5"
+      },
+      "feedback": {
+        "spoken": "Stub: correction noted.",
+        "status": "recorded"
+      },
+      "after": {
+        "spoken": "Improved from your feedback: Stub answer to: Which product category earned the most over the last four quarters?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-6"
+      }
+    },
+    {
+      "id": "q4",
+      "question": "Which product has the highest return rate this year?",
+      "correction": "Return rate means units returned divided by units sold, across Q1 and Q2 of 2026.",
+      "before": {
+        "spoken": "Stub answer to: Which product has the highest return rate this year?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-7"
+      },
+      "feedback": {
+        "spoken": "Stub: correction noted.",
+        "status": "recorded"
+      },
+      "after": {
+        "spoken": "Improved from your feedback: Stub answer to: Which product has the highest return rate this year?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-8"
+      }
+    },
+    {
+      "id": "q5",
+      "question": "Which sales channel drove the most revenue in the first quarter of 2026?",
+      "correction": "Compare Retail, Online and Wholesale by gross revenue for Q1 2026 only.",
+      "before": {
+        "spoken": "Stub answer to: Which sales channel drove the most revenue in the first quarter of 2026?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-9"
+      },
+      "feedback": {
+        "spoken": "Stub: correction noted.",
+        "status": "recorded"
+      },
+      "after": {
+        "spoken": "Improved from your feedback: Stub answer to: Which sales channel drove the most revenue in the first quarter of 2026?",
+        "card": {
+          "title": "Stub Card",
+          "columns": [
+            "Metric",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Revenue",
+              "$100"
+            ]
+          ],
+          "chart_hint": "bar",
+          "sources": [
+            "stub"
+          ],
+          "confidence": "high"
+        },
+        "answer_id": "fake-ans-10"
+      }
+    }
+  ]
+}
