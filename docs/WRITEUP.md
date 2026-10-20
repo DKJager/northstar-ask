@@ -37,9 +37,9 @@ model and proprietary Evolution module.
 ## What you can run today, and what you can't
 
 - Everything above runs offline in `SAMPLE_MODE`, which replays a small set
-  of recorded responses, each spoken reply prefixed "Recorded sample:". The
-  recordings are illustrative: sample mode does not learn, and the
-  "improved" reply is itself a recording.
+  of precomputed responses, each spoken reply prefixed "Sample answer:". The
+  samples are illustrative: sample mode does not learn, and the
+  "improved" reply is itself a precomputed sample.
 - Live answers need the hosted service. The repository's tests exercise the
   live path against a hand-written local stub of that service, not against the
   service itself. `eval/` holds a five-question before/after-correction pack;

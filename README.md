@@ -24,16 +24,16 @@ simulator, a fictional data generator, a deployment template, tests and docs.
 **Track:** primary track Alexa+; mini challenge AWS Builder.
 
 **Hosted endpoint (nothing to install):** `https://rkko3li742dagcpa3f4os6zf640yuitu.lambda-url.us-east-1.on.aws/mcp` is the Streamable HTTP
-MCP endpoint, deployed on AWS Lambda in recorded-sample mode (fictional data), available until
+MCP endpoint, deployed on AWS Lambda in sample mode (fictional data), available until
 20 Nov 2026. Connect any MCP client (for example MCP Inspector), initialize, and call
 `ask_northstar` with a question from "Try it" below.
 
-No account or token is needed to run it yourself either: recorded-sample mode runs
+No account or token is needed to run it yourself either: sample mode runs
 entirely from this repository. After the install step in the Quickstart
 below:
 
 ```bash
-# Simulated Alexa+ experience in recorded-sample mode
+# Simulated Alexa+ experience in sample mode
 SAMPLE_MODE=true python web_sim/bridge.py
 #     then open http://127.0.0.1:8765/
 
@@ -42,7 +42,7 @@ SAMPLE_MODE=true uvicorn mcp_server.server:asgi_app --host 127.0.0.1 --port 8080
 ```
 
 Type the questions listed under "Try it" exactly as written; every spoken
-reply in sample mode is prefixed "Recorded sample:".
+reply in sample mode is prefixed "Sample answer:".
 
 ## What it does
 
@@ -63,12 +63,12 @@ reply in sample mode is prefixed "Recorded sample:".
 
 | Mode | What you get | Needs |
 |------|--------------|-------|
-| `SAMPLE_MODE=true` | Recorded responses from `samples/responses.json`, every spoken reply prefixed "Recorded sample:". Nothing is presented as live. | Nothing else |
+| `SAMPLE_MODE=true` | Answers precomputed from the fictional dataset by `samples/build_samples.py` and served from `samples/responses.json`; every spoken reply is prefixed "Sample answer:". Nothing is presented as live. | Nothing else |
 | Live | Real answers from the hosted service | `NORTHSTAR_ENDPOINT` and `NORTHSTAR_TOKEN` from the 3Dogs team |
 
-Sample mode replays a small fixed set of recordings, matched to the question
+Sample mode replays a small fixed set of precomputed samples, matched to the question
 by wording. Use the exact questions listed under "Try it" below. It does not
-learn from corrections: the "improved" reply is itself a recording.
+learn from corrections: the "improved" reply is itself a precomputed sample.
 
 ## Quickstart (about 5 minutes)
 
@@ -84,7 +84,7 @@ pip install -r requirements.txt
 #    except test_client, which waits out a 7 second timeout on purpose)
 for t in tests/test_*.py; do python "$t" || break; done
 
-# 3a. Start the simulated Alexa+ experience in recorded-sample mode
+# 3a. Start the simulated Alexa+ experience in sample mode
 SAMPLE_MODE=true python web_sim/bridge.py
 #     then open http://127.0.0.1:8765/
 
@@ -102,7 +102,7 @@ For live answers drop `SAMPLE_MODE=true` and export `NORTHSTAR_ENDPOINT` and
 3. "Break that down by sales channel."
 4. Click **Weekly brief**.
 5. Click **Correct me**, type a correction, then ask "Which region sold the
-   most sleeping bags last quarter?" The recorded reply is marked
+   most sleeping bags last quarter?" The precomputed sample reply is marked
    "Improved from your feedback".
 6. "Are returns hurting our margins in the Central region?" shows the
    low-confidence case.
@@ -121,7 +121,7 @@ For live answers drop `SAMPLE_MODE=true` and export `NORTHSTAR_ENDPOINT` and
 
 | Variable | Meaning |
 |----------|---------|
-| `SAMPLE_MODE` | `true` serves recorded responses and needs no token |
+| `SAMPLE_MODE` | `true` serves precomputed samples and needs no token |
 | `NORTHSTAR_ENDPOINT` | Base URL of the hosted answering service |
 | `NORTHSTAR_TOKEN` | Bearer token for it; read from the environment only |
 | `MCP_STATELESS` | `true` for Lambda: no server-side MCP session; clients send `X-Northstar-Session` to keep a conversation together |
@@ -151,7 +151,7 @@ sam build && sam deploy --guided
 | `client/northstar_client.py` | Thin HTTPS client with the budget, retry, cap and token handling above |
 | `web_sim/` | Simulated Alexa+ front end (push-to-talk with typed fallback, spoken replies, cards) and its local bridge |
 | `northstar/gen_data.py`, `data/SCHEMA.md` | Deterministic fictional dataset and its schema |
-| `samples/responses.json` | Recorded responses for SAMPLE_MODE |
+| `samples/responses.json` | Precomputed samples for SAMPLE_MODE, built from the dataset by `samples/build_samples.py` |
 | `eval/` | Five-question before/after-correction pack and runner; see `eval/README.md` |
 | `deploy/` | SAM template and deployment guide |
 | `docs/` | Write-up, AWS services, video script, friction log |

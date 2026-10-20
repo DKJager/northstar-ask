@@ -74,8 +74,8 @@ def main():
           "tools/list over Lambda shows the same four tools")
     sample = tool(lambda_handler, "ask_northstar",
                   {"question": "How much revenue did Northstar make last quarter?"})
-    check(sample["spoken"].startswith("Recorded sample:") and sample["card"]["rows"],
-          "a second invocation reuses the warm runtime and returns a recorded-sample card")
+    check(sample["spoken"].startswith("Sample answer:") and sample["card"]["rows"],
+          "a second invocation reuses the warm runtime and returns a precomputed-sample card")
 
     # Live (stub) mode: continuity needs the explicit session header.
     with FakeNorthstarService(mode="ok") as stub:

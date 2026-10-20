@@ -4,7 +4,7 @@
 Verifies, per the spec:
   (i)   web_sim/index.html is served with HTTP 200;
   (ii)  a question posted through bridge.py returns spoken text and card
-        JSON (SAMPLE_MODE, prefixed "Recorded sample:").
+        JSON (SAMPLE_MODE, prefixed "Sample answer:").
 
 Runs the real bridge HTTP server on an ephemeral port in a background
 thread. Audit compliance (#844): no mocking framework is imported or
@@ -100,8 +100,8 @@ def run():
             "question": "How much revenue did Northstar make last quarter?",
         })
         check(status == 200, "bridge /api/ask returns HTTP 200")
-        check(answer.get("spoken", "").startswith("Recorded sample:"),
-              "bridge answer returns 'Recorded sample:'-prefixed spoken "
+        check(answer.get("spoken", "").startswith("Sample answer:"),
+              "bridge answer returns 'Sample answer:'-prefixed spoken "
               "text in SAMPLE_MODE")
         card = answer.get("card")
         check(card and isinstance(card, dict), "card is a dictionary")
@@ -116,8 +116,8 @@ def run():
 
         status, brief = _post(base + "/api/brief", {"session_id": session})
         check(status == 200, "bridge /api/brief returns HTTP 200")
-        check(brief.get("spoken", "").startswith("Recorded sample:"),
-              "bridge /api/brief returns 'Recorded sample:'-prefixed spoken text")
+        check(brief.get("spoken", "").startswith("Sample answer:"),
+              "bridge /api/brief returns 'Sample answer:'-prefixed spoken text")
         check(isinstance(brief.get("cards"), list), "bridge /api/brief returns cards as list")
         check(len(brief["cards"]) > 0, "bridge /api/brief returns non-empty cards list")
         
@@ -134,8 +134,8 @@ def run():
         status, explained = _post(base + "/api/explain",
                                   {"session_id": session})
         check(status == 200, "bridge /api/explain returns HTTP 200")
-        check(explained.get("spoken", "").startswith("Recorded sample:"),
-              "bridge /api/explain returns 'Recorded sample:'-prefixed spoken text")
+        check(explained.get("spoken", "").startswith("Sample answer:"),
+              "bridge /api/explain returns 'Sample answer:'-prefixed spoken text")
         check(isinstance(explained.get("card"), dict),
               "bridge /api/explain returns card dictionary")
         card = explained.get("card")

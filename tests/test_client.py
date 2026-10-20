@@ -4,7 +4,7 @@
 """Contract tests for client/northstar_client.py. Prints CLIENT_OK.
 
 Covers, per the spec:
-  (i)   SAMPLE_MODE returns "Recorded sample:"-prefixed spoken text.
+  (i)   SAMPLE_MODE returns "Sample answer:"-prefixed spoken text.
   (ii)  Against the local stub service: the 7 s total budget,
         the 256 KB cap, and the single budget-aware retry on 5xx behave
         as specified.
@@ -80,16 +80,16 @@ try:
             result = client.ask("session-a",
                                 "How much revenue did Northstar make last quarter?")
             check(result["spoken"].startswith(SAMPLE_PREFIX),
-                  "SAMPLE_MODE spoken reply is prefixed 'Recorded sample:'")
+                  "SAMPLE_MODE spoken reply is prefixed 'Sample answer:'")
             brief = client.brief("session-a")
             check(brief["spoken"].startswith(SAMPLE_PREFIX),
-                  "SAMPLE_MODE brief is prefixed 'Recorded sample:'")
+                  "SAMPLE_MODE brief is prefixed 'Sample answer:'")
             expl = client.explain("session-a", "sample-ans-0001")
             check(expl["spoken"].startswith(SAMPLE_PREFIX),
-                  "SAMPLE_MODE explain is prefixed 'Recorded sample:'")
+                  "SAMPLE_MODE explain is prefixed 'Sample answer:'")
             fb = client.feedback("session-a", "sample-ans-0001", "fix it")
             check(fb["spoken"].startswith(SAMPLE_PREFIX),
-                  "SAMPLE_MODE feedback is prefixed 'Recorded sample:'")
+                  "SAMPLE_MODE feedback is prefixed 'Sample answer:'")
 
     def test_retry_once_on_5xx():
         with FakeNorthstarService(mode="flaky") as stub:
@@ -253,7 +253,7 @@ try:
                     raise AssertionError("FAILED: feedback accepted %r" % (bad,))
             result = client.feedback("session-i", "sample-ans-0001", "Mountain led, not Pacific.")
             check(isinstance(result, dict) and result.get("spoken", "").startswith(SAMPLE_PREFIX),
-                  "feedback with real text is accepted and labelled as a recorded sample")
+                  "feedback with real text is accepted and labelled as a precomputed sample")
 
     if __name__ == "__main__":
         # Set up required environment variables for tests

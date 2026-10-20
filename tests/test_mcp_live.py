@@ -182,7 +182,7 @@ async def _exercise(port):
                     assert structured_content, "ask returned no structured content"
                     content = structured_content
                     spoken = content.get("spoken", "")
-                    assert spoken.startswith("Recorded sample:"), (
+                    assert spoken.startswith("Sample answer:"), (
                         "SAMPLE_MODE prefix missing: %r" % spoken[:60])
                     card = content.get("card")
                     assert card, "ask returned no card"

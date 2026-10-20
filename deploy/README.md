@@ -15,7 +15,7 @@ lives in this repository.
 python3.12 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 
-# Recorded samples, no credentials:
+# Precomputed samples, no credentials:
 SAMPLE_MODE=true uvicorn mcp_server.server:asgi_app --host 127.0.0.1 --port 8080
 # MCP endpoint: http://127.0.0.1:8080/mcp
 
@@ -38,7 +38,7 @@ sam deploy --guided
 
 Guided prompts:
 
-- `SampleMode`: `true` (default) serves recorded responses and needs no
+- `SampleMode`: `true` (default) serves precomputed sample responses and needs no
   endpoint or token. Use `false` for live answers.
 - `NorthstarEndpoint`: required when `SampleMode` is `false`.
 - `NorthstarToken`: the bearer token (stored `NoEcho`).

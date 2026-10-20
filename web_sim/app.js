@@ -35,7 +35,7 @@
       return resp.json();
     }).then(function(data) {
       if (data.sample_mode) {
-        hint.textContent = "Voice input uses your browser's Web Speech API when available; typing always works. Answers come from recorded samples.";
+        hint.textContent = "Voice input uses your browser's Web Speech API when available; typing always works. Answers are precomputed from the fictional dataset.";
       } else {
         hint.textContent = "Voice input uses your browser's Web Speech API when available; typing always works. Answers come from a configured backend service.";
       }

@@ -1,7 +1,7 @@
 {
   "mode": "SAMPLE_MODE",
   "version": "2026-10-02",
-  "notice": "Illustrative recorded responses in the style of Northstar Ask over a fictional retail dataset. In SAMPLE_MODE every spoken reply is prefixed 'Recorded sample:' by the client so nothing recorded is presented as live. Figures here are not reconciled with northstar/gen_data.py.",
+  "notice": "Sample answer: illustrative responses in the style of Northstar Ask over a fictional retail dataset. In SAMPLE_MODE every spoken reply is prefixed 'Sample answer:' by the client so nothing recorded is presented as live. Figures are precomputed from the fictional dataset.",
   "card_contract": "Per issue #134: brief responses carry cards ONLY in the 'cards' array; single-answer responses (ask, follow-up, breakdown, explain, low-confidence, feedback-improved) carry ONE card in the singular 'card' field. The two shapes never mix, so no card is ever rendered twice.",
   "confidence_mapping": {
     "description": "Confidence values are mapped from internal scoring ranges",
@@ -23,7 +23,7 @@
       "key": "ask_revenue_q2_2026",
       "kind": "ask",
       "question": "How much revenue did Northstar make last quarter?",
-      "spoken": "Last quarter, Northstar Outdoor Co. booked 2.41 million dollars in revenue. That was up about 9 percent from the prior quarter.",
+      "spoken": "Last quarter, Northstar Outdoor Co. booked about 770 thousand dollars in revenue. That was down about 10.8 percent from the prior quarter.",
       "card": {
         "title": "Revenue — Q2 2026",
         "columns": [
@@ -34,18 +34,18 @@
         "rows": [
           [
             "Q2 2026",
-            "$2,410,000",
-            "+9.1%"
+            "$769,742",
+            "-10.8%"
           ],
           [
             "Q1 2026",
-            "$2,209,000",
-            "+3.4%"
+            "$863,396",
+            "-0.5%"
           ],
           [
             "Q4 2025",
-            "$2,136,000",
-            "+6.8%"
+            "$867,491",
+            "-16.6%"
           ]
         ],
         "chart_hint": "bar",
@@ -61,7 +61,7 @@
       "key": "ask_top_region_tents",
       "kind": "ask",
       "question": "Which region sold the most tents this year?",
-      "spoken": "The Pacific region leads tent sales this year with about 412 thousand dollars. Mountain is second at roughly 385 thousand.",
+      "spoken": "The Pacific region leads tent sales this year with about 235 thousand dollars. Mountain is second at about 224 thousand dollars.",
       "card": {
         "title": "Tent Sales by Region — 2026 YTD",
         "columns": [
@@ -72,23 +72,23 @@
         "rows": [
           [
             "Pacific",
-            "$412,000",
-            "980"
+            "$234,926",
+            "633"
           ],
           [
             "Mountain",
-            "$385,000",
-            "912"
-          ],
-          [
-            "Central",
-            "$301,000",
-            "741"
+            "$224,008",
+            "577"
           ],
           [
             "Atlantic",
-            "$276,000",
-            "668"
+            "$221,821",
+            "578"
+          ],
+          [
+            "Central",
+            "$176,822",
+            "431"
           ]
         ],
         "chart_hint": "bar",
@@ -105,9 +105,9 @@
       "kind": "follow-up",
       "question": "And last quarter?",
       "context": "Follows ask_top_region_tents in the same session.",
-      "spoken": "In Q1 2026, the Pacific region also led tent sales, at about 198 thousand dollars. The ordering across regions was the same.",
+      "spoken": "In Q2 2026, Mountain led tent sales at about 107 thousand dollars, ahead of Pacific. For the year so far, Pacific still leads.",
       "card": {
-        "title": "Tent Sales by Region — Q1 2026",
+        "title": "Tent Sales by Region — Q2 2026",
         "columns": [
           "Region",
           "Tent Revenue (USD)",
@@ -115,24 +115,24 @@
         ],
         "rows": [
           [
-            "Pacific",
-            "$198,000",
-            "470"
-          ],
-          [
             "Mountain",
-            "$184,000",
-            "438"
+            "$106,970",
+            "276"
           ],
           [
-            "Central",
-            "$146,000",
-            "360"
+            "Pacific",
+            "$94,209",
+            "265"
           ],
           [
             "Atlantic",
-            "$132,000",
-            "318"
+            "$78,414",
+            "226"
+          ],
+          [
+            "Central",
+            "$76,319",
+            "176"
           ]
         ],
         "chart_hint": "bar",
@@ -150,9 +150,9 @@
       "kind": "breakdown",
       "question": "Break that down by sales channel.",
       "context": "Follows followup_last_quarter in the same session.",
-      "spoken": "Online drove just over half of Q1 tent revenue in the Pacific region. Retail was about a third, and wholesale made up the rest.",
+      "spoken": "In the Mountain region, wholesale made up 63 percent of Q2 2026 tent revenue, online made up 19 percent and retail made up 17 percent.",
       "card": {
-        "title": "Pacific Tent Revenue by Channel — Q1 2026",
+        "title": "Mountain Tent Revenue by Channel — Q2 2026",
         "columns": [
           "Channel",
           "Revenue (USD)",
@@ -160,19 +160,19 @@
         ],
         "rows": [
           [
+            "Wholesale",
+            "$67,840",
+            "63%"
+          ],
+          [
             "Online",
-            "$103,000",
-            "52%"
+            "$20,672",
+            "19%"
           ],
           [
             "Retail",
-            "$66,000",
-            "33%"
-          ],
-          [
-            "Wholesale",
-            "$29,000",
-            "15%"
+            "$18,457",
+            "17%"
           ]
         ],
         "chart_hint": "bar",
@@ -190,7 +190,7 @@
       "kind": "explain",
       "question": "What does that number mean for the business?",
       "refers_to_answer_id": "sample-ans-0001",
-      "spoken": "It means Northstar's busy spring season landed on target, with growth coming mostly from online orders. The business is tracking ahead of last year's pace.",
+      "spoken": "In Q2 2026, revenue was down 10.8 percent versus Q1 2026. The biggest channel was online. For the first half of 2026, revenue was about 1.63 million dollars compared to about 2.01 million dollars in the first half of 2025 (down 18.7 percent).",
       "card": {
         "title": "What Q2 2026 Revenue Means",
         "columns": [
@@ -199,16 +199,16 @@
         ],
         "rows": [
           [
-            "Season trend",
-            "Spring peak on target"
+            "Quarter trend",
+            "Down 10.8% vs Q1 2026"
           ],
           [
-            "Growth driver",
-            "Online channel"
+            "Biggest channel",
+            "Online"
           ],
           [
             "Year pace",
-            "Ahead of 2025"
+            "H1 2026 $1,633,139 vs H1 2025 $2,008,623 (-18.7%)"
           ]
         ],
         "chart_hint": "table",
@@ -235,12 +235,12 @@
         "rows": [
           [
             "Q2 2026",
-            "31",
+            "27",
             "Margins not in dataset"
           ],
           [
             "Q1 2026",
-            "27",
+            "22",
             "Margins not in dataset"
           ]
         ],
@@ -257,7 +257,7 @@
       "key": "feedback_corrected_region",
       "kind": "feedback-improved",
       "question": "Which region sold the most sleeping bags last quarter?",
-      "spoken": "Improved from your feedback: the Mountain region led sleeping-bag sales last quarter at about 156 thousand dollars, ahead of the Pacific region.",
+      "spoken": "Improved from your feedback: the Central region led sleeping-bag sales last quarter at about 68 thousand dollars, ahead of the Pacific region.",
       "card": {
         "title": "Sleeping Bag Sales by Region — Q2 2026",
         "columns": [
@@ -267,24 +267,24 @@
         ],
         "rows": [
           [
-            "Mountain",
-            "$156,000",
-            "520"
+            "Central",
+            "$67,976",
+            "357"
           ],
           [
             "Pacific",
-            "$148,000",
-            "493"
+            "$65,530",
+            "353"
           ],
           [
-            "Central",
-            "$112,000",
-            "381"
+            "Mountain",
+            "$32,283",
+            "202"
           ],
           [
             "Atlantic",
-            "$97,000",
-            "330"
+            "$18,692",
+            "85"
           ]
         ],
         "chart_hint": "bar",
@@ -302,7 +302,7 @@
       "key": "weekly_brief",
       "kind": "brief",
       "question": "Give me the weekly business brief.",
-      "spoken": "Here's your weekly brief. Revenue is up 9 percent quarter over quarter, the Pacific region leads overall, and online is the fastest growing channel.",
+      "spoken": "Here's your weekly brief. Revenue is down 11 percent quarter over quarter, the Pacific region leads overall, and online is the biggest channel (it grew from Q1 2026).",
       "cards": [
         {
           "title": "Weekly Brief",
@@ -314,18 +314,18 @@
           "rows": [
             [
               "Revenue",
-              "$2.41M",
-              "Up 9% QoQ"
+              "$769,742",
+              "Down 11% QoQ"
             ],
             [
               "Top region",
               "Pacific",
-              "Steady"
+              "26%"
             ],
             [
               "Top channel",
               "Online",
-              "Growing"
+              "Growing vs Q1 2026"
             ]
           ],
           "chart_hint": "table",
@@ -333,36 +333,6 @@
             "Northstar fictional demo dataset"
           ],
           "confidence": "high"
-        },
-        {
-          "title": "Weekly Brief — Category Watch",
-          "columns": [
-            "Category",
-            "Revenue (USD)",
-            "Note"
-          ],
-          "rows": [
-            [
-              "Tents",
-              "$812,000",
-              "Season peak"
-            ],
-            [
-              "Sleeping Bags",
-              "$513,000",
-              "Strong in Mountain"
-            ],
-            [
-              "Headlamps",
-              "$164,000",
-              "Flat"
-            ]
-          ],
-          "chart_hint": "bar",
-          "sources": [
-            "Northstar fictional demo dataset"
-          ],
-          "confidence": "medium"
         }
       ],
       "answer_id": "sample-ans-0008",

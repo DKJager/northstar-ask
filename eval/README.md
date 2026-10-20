@@ -37,6 +37,6 @@ Set `NORTHSTAR_ENDPOINT` and `NORTHSTAR_TOKEN`, then run
   checking the numbers;
 - `key`: which label was the before answer. Open it only after scoring.
 
-The recorded responses in `samples/responses.json` are illustrative
-recordings for the offline demo. Their figures are not reconciled with the
+The responses in `samples/responses.json` are illustrative precomputed
+samples for the offline demo. Their figures are not reconciled with the
 generated dataset, so do not score them against `ground_truth`.

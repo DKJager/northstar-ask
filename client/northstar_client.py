@@ -19,9 +19,9 @@ Guarantees enforced here:
   * Response body size capped at 256 KB.
   * Bearer token read from the NORTHSTAR_TOKEN environment variable and
     never logged or included in error messages.
-  * SAMPLE_MODE=true returns recorded end-product responses from
+  * SAMPLE_MODE=true returns precomputed end-product responses from
     samples/responses.json with every spoken reply prefixed
-    "Recorded sample:" so nothing recorded is presented as live.
+    "Sample answer:" so nothing precomputed is presented as live.
 """
 import json
 import os
@@ -39,16 +39,16 @@ DEFAULT_TOTAL_BUDGET_SECONDS = 7.0
 DEFAULT_RETRY_MIN_REMAINING_SECONDS = 2.0
 TIMEOUT_MARGIN_SECONDS = 0.25
 MAX_RESPONSE_BYTES = 256 * 1024
-SAMPLE_PREFIX = "Recorded sample:"
+SAMPLE_PREFIX = "Sample answer:"
 MAX_SAMPLE_ITERATIONS = 100  # Limit iterations for performance
 
-# Sample-mode explain: the recording used when no recording exists for the
+# Sample-mode explain: the precomputed sample used when no precomputed sample exists for the
 # requested answer id. It explains the Q2 2026 revenue answer only.
 _SAMPLE_EXPLAIN_FALLBACK_KEY = "explain_revenue_q2_2026"
 _SAMPLE_EXPLAIN_FALLBACK_NOTE = (
-    "Fixed explanation recording: sample mode has no explanation recorded "
-    "for this answer id, so it replays the one recorded explanation "
-    "(Q2 2026 revenue) regardless of which answer was asked about."
+    "Fixed explanation sample: sample mode has no explanation precomputed "
+    "from the fictional dataset for this answer id, so it replays the one "
+    "precomputed explanation (Q2 2026 revenue) regardless of which answer was asked about."
 )
 
 _DEFAULT_ENDPOINT = "https://localhost:8900"
@@ -166,10 +166,10 @@ class NorthstarClient:
         if not isinstance(answer_id, str) or not answer_id.strip():
             raise NorthstarClientError("An answer_id is required to explain an answer.")
         if self.sample_mode:
-            # Prefer an explanation recorded for this specific answer id
+            # Prefer an explanation precomputed for this specific answer id
             # (an item with kind "explain" and a matching "answer_id", or
             # keyed "explain_<answer_id>"). Only when none exists fall back
-            # to the single fixed recording, and say so in the response.
+            # to the single fixed precomputed sample, and say so in the response.
             recorded = self._sample_explain_for_answer(answer_id.strip())
             if recorded is not None:
                 return recorded
@@ -190,10 +190,10 @@ class NorthstarClient:
             # Sample mode does not learn from corrections, and these
             # templates must not suggest that it does.
             feedback_templates = [
-                "Correction noted (recorded sample; no learning in sample mode).",
-                "Noted. This is a recorded sample; sample mode does not learn from corrections.",
-                "Your correction was noted (recorded sample; no learning in sample mode).",
-                "Noted (recorded sample). Sample mode does not apply corrections to later answers."
+                "Correction noted (precomputed sample; no learning in sample mode).",
+                "Noted. This is a precomputed sample; sample mode does not learn from corrections.",
+                "Your correction was noted (precomputed sample; no learning in sample mode).",
+                "Noted (precomputed sample). Sample mode does not apply corrections to later answers."
             ]
             # Simple hash-based selection for deterministic but varied responses
             hash_val = zlib.crc32(
@@ -340,7 +340,7 @@ class NorthstarClient:
                     context={"url": url, "error": str(exc)}) from exc
 
     # ------------------------------------------------------------------
-    # SAMPLE_MODE helpers (recorded end-product responses)
+    # SAMPLE_MODE helpers (precomputed end-product responses)
     # ------------------------------------------------------------------
     def _load_samples(self):
         current_time = time.time()
@@ -397,9 +397,9 @@ class NorthstarClient:
         return result
 
     def _sample_explain_for_answer(self, answer_id):
-        """Return the explanation recorded for `answer_id`, or None.
+        """Return the explanation precomputed for `answer_id`, or None.
 
-        A recording matches when it has kind "explain" and an "answer_id"
+        A precomputed sample matches when it has kind "explain" and an "answer_id"
         equal to the requested one, or when its key is "explain_<answer_id>".
         """
         responses = self._load_samples()
@@ -422,7 +422,7 @@ class NorthstarClient:
         return None
 
     def _sample_lookup(self, question):
-        """Pick a recorded response whose question best matches the input."""
+        """Pick a precomputed response whose question best matches the input."""
         q = self._normalize_text(question)
         responses = self._load_samples()
         
@@ -494,5 +494,5 @@ class NorthstarClient:
             return self._prefix_spoken(matches[0])
         else:
             raise NorthstarClientError(
-                "Recorded sample %r not found in samples file." % key,
+                "Precomputed sample %r not found in samples file." % key,
                 context={"key": key})

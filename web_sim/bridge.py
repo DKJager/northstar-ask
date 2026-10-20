@@ -4,7 +4,7 @@
 The browser talks plain JSON POSTs to this bridge; the bridge calls the
 same client contract used by the MCP tools, so the simulator demonstrates
 the real end-product surface. SAMPLE_MODE is honoured by the client, which
-prefixes every recorded spoken reply with "Recorded sample:".
+prefixes every recorded spoken reply with "Sample answer:".
 
 Endpoints:
   GET  /            -> web_sim/index.html

@@ -21,8 +21,8 @@ a Function URL, defined in `deploy/template.yaml`.
   `SAMPLE_MODE`, and two switches for hosting, `MCP_STATELESS=true` and
   `MCP_ALLOW_ANY_HOST=true`.
 - With `SAMPLE_MODE=true` (the template default) the endpoint serves
-  recorded responses bundled in `samples/responses.json`, each spoken reply
-  prefixed "Recorded sample:". A public demo URL then needs no private
+  precomputed responses bundled in `samples/responses.json`, each spoken reply
+  prefixed "Sample answer:". A public demo URL then needs no private
   credentials.
 
 Behavior to know about: Lambda mints an `Mcp-Session-Id` at initialize and
@@ -55,6 +55,6 @@ package.
 
 1. A Lambda function exposes the MCP endpoint at `<Function URL>/mcp`.
 2. The thin client in `client/northstar_client.py` calls the hosted service
-   (7 second budget, one budget-aware retry, 256 KB cap), or serves recorded
-   samples when `SAMPLE_MODE=true`.
+   (7 second budget, one budget-aware retry, 256 KB cap), or serves
+   precomputed samples when `SAMPLE_MODE=true`.
 3. Secrets arrive only as environment variables.
