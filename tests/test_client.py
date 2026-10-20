@@ -200,7 +200,7 @@ try:
         # Test behavior when no token is provided
         free_port = get_free_port()
         try:
-            NorthstarClient(endpoint=f"http://127.0.0.1:{free_port}", token=None)
+            NorthstarClient(endpoint=f"http://127.0.0.1:{free_port}", token=None, sample_mode=False)
             raise SystemExit("expected ValueError for missing token")
         except ValueError as exc:
             check("token" in str(exc).lower(),
