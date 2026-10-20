@@ -96,7 +96,7 @@
       thead.appendChild(headRow);
       table.appendChild(thead);
       var tbody = document.createElement("tbody");
-      card.rows.slice(0, 10).forEach(function (row) {
+      card.rows.slice(0, 20).forEach(function (row) {
         var tr = document.createElement("tr");
         row.forEach(function (cell) {
           var td = document.createElement("td");
