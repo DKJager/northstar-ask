@@ -13,8 +13,9 @@ experience**. It answers questions over the fictional Northstar Outdoor Co.
 retail dataset. All demo data is fictional; no real customer data is used
 anywhere.
 
-Answers are produced by 3Dogs Nexus, powered by our proprietary Discovery
-model and proprietary Evolution module. The answering service is hosted by
+In live mode, answers are produced by 3Dogs Nexus, powered by our proprietary
+Discovery model and proprietary Evolution module. The sample mode
+returns precomputed answers and makes no model calls. The answering service is hosted by
 3Dogs Nexus and reached at `NORTHSTAR_ENDPOINT`; this repository contains
 only the end-product surface: the MCP server, a thin HTTPS client, the
 simulator, a fictional data generator, a deployment template, tests and docs.

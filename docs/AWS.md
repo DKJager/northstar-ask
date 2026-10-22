@@ -2,8 +2,8 @@
 
 This document lists the AWS services the project uses. It intentionally does
 not name specific models or describe how answers are produced. Answers are
-produced by 3Dogs Nexus, powered by our proprietary Discovery model and
-proprietary Evolution module.
+produced in live mode by 3Dogs Nexus, powered by our proprietary Discovery
+model and proprietary Evolution module; sample mode makes no model calls.
 
 ## 1. AWS Lambda with a Function URL, defined in AWS SAM
 
@@ -39,7 +39,7 @@ deployed from our build environment.
 
 ## 2. Amazon managed model hosting (service side)
 
-The hosted 3Dogs Nexus service, outside this repository, makes its
+In live mode, the hosted 3Dogs Nexus service, outside this repository, makes its
 language-model calls on Amazon's managed model hosting inside the 3Dogs AWS
 account. This repository treats that service as an opaque HTTPS endpoint
 (`NORTHSTAR_ENDPOINT`) and contains no model identifiers, request templates or

@@ -31,8 +31,9 @@ All demo data is fictional; no real customer data is used anywhere.
 - **Honest low-confidence answers.** When the dataset cannot support a
   question, the answer says so instead of bluffing.
 
-Answers are produced by 3Dogs Nexus, powered by our proprietary Discovery
-model and proprietary Evolution module.
+In live mode, answers are produced by 3Dogs Nexus, powered by our proprietary
+Discovery model and proprietary Evolution module. The sample mode available to
+judges returns precomputed answers and makes no model calls.
 
 ## What you can run today, and what you can't
 
@@ -69,7 +70,7 @@ model and proprietary Evolution module.
 ## AWS services used (AWS Builder mini challenge)
 
 See `docs/AWS.md`. In short: AWS Lambda with a Function URL, defined in AWS
-SAM, hosts the MCP server; the hosted service makes its language-model calls
+SAM, hosts the MCP server; in live mode the hosted service makes its language-model calls
 on Amazon's managed model hosting in the 3Dogs AWS account.
 
 ## Challenges
@@ -123,10 +124,9 @@ from live runs.
   server-initiated streaming, so the template runs the server in stateless
   JSON-response mode. `CodeUri` and `Handler` must agree on where the package
   root is; ours disagreed in the first draft.
-- **Onboarding:** we wrote the template and tested the handler locally; we
-  have not yet run `sam deploy`, so we have no deployment-experience feedback
-  to give.
-- **Build again?** Yes, with that caveat.
+- **Onboarding:** we wrote the SAM template and deployed it as the
+  CloudFormation stack `northstar-dev` in us-east-1, in sample mode.
+- **Build again?** Yes.
 
 ### Web Speech API (browser simulator)
 

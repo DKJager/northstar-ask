@@ -168,6 +168,7 @@ body {
 
 .text-form { display: flex; gap: 8px; }
 .text-form input {
+  min-width: 0; /* let the field shrink so the Ask button stays on-screen at 320px */
   flex: 1;
   background: #0d2135;
   border: 1px solid #2a5578;
