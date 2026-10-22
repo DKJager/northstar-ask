@@ -89,9 +89,9 @@ See `docs/FRICTION_LOG.md` for the detail.
 
 ## What's next
 
-Deploy the template and point it at the hosted service, run the blind
-evaluation pack against live answers, and re-record the sample responses
-from live runs.
+The template is deployed as stack `northstar-dev` in sample mode. Next:
+point it at the hosted 3Dogs Nexus service, run the blind evaluation pack
+against live answers, and re-record the sample responses from live runs.
 
 ---
 
