@@ -63,7 +63,7 @@ judges returns precomputed answers and makes no model calls.
 - A **SAM template** (`deploy/template.yaml`) for AWS Lambda behind a Function
   URL, with `SAMPLE_MODE=true` as the default so a judge endpoint needs no
   private credentials. `lambda_handler` is tested against Function-URL-shaped
-  events; we have not deployed the template from our build environment.
+  events, and the template is deployed as stack `northstar-dev` in us-east-1, in sample mode.
 - A deterministic fictional data generator (`northstar/gen_data.py`) that
   gives the demo dataset and the ground truth for the evaluation pack.
 
